@@ -42,6 +42,10 @@ public class Contact {
         this.createDate = Long.parseLong((new SimpleDateFormat("yyyymmdd").format(new Date())).toString());
     }
 
+    public Contact() {
+
+    }
+
     public long getContactId() {
         return contactId;
     }

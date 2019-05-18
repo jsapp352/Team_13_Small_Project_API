@@ -39,6 +39,10 @@ public class User {
         this.createDate = Long.parseLong((new SimpleDateFormat("yyyymmdd").format(new Date())).toString());
     }
 
+    public User() {
+
+    }
+
     public long getUserId() {
         return userId;
     }
