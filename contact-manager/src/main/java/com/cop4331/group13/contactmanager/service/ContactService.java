@@ -20,4 +20,6 @@ public class ContactService {
     public List<Contact> getContactsByUserId(long userId) { return dao.findByUserId(userId); }
 
     public Contact updateContact(Contact contact) { return dao.save(contact); }
+
+    public void deleteContact(long contactId) { dao.deleteById(contactId); }
 }
