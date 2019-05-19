@@ -11,5 +11,7 @@ public class ContactService {
     @Autowired
     private ContactDao dao;
 
+    public Contact getContactByContactId(long contactId) { return dao.findById(contactId).orElse(null); }
+
     public Contact createContact(Contact contact) { return dao.save(contact); }
 }
