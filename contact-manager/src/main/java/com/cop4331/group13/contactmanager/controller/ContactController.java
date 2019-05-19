@@ -22,4 +22,7 @@ public class ContactController {
     @RequestMapping("/contact/userId/{userId}")
     public List<Contact> getContactsByUserId(@PathVariable long userId) { return service.getContactsByUserId(userId); }
 
+    @RequestMapping(value = "/contact", method = RequestMethod.POST)
+    public Contact updateContact(@RequestBody Contact contact) { return service.updateContact(contact); }
+
 }

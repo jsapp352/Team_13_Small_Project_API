@@ -18,4 +18,6 @@ public class ContactService {
     public Contact getContactByContactId(long contactId) { return dao.findById(contactId).orElse(null); }
 
     public List<Contact> getContactsByUserId(long userId) { return dao.findByUserId(userId); }
+
+    public Contact updateContact(Contact contact) { return dao.save(contact); }
 }
