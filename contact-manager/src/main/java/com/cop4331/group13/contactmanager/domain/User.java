@@ -1,5 +1,7 @@
 package com.cop4331.group13.contactmanager.domain;
 
+import org.springframework.data.annotation.CreatedDate;
+
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,12 +12,15 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long userId;
+    @Column(unique = true)
     private String username;
     private String password;
     private String firstName;
     private String lastName;
     private String securityQuestion;
     private String securityAnswer;
+
+    @CreatedDate
     private long createDate;
 
     public User(long userId, String username, String password, String firstName, String lastName, String securityQuestion, String securityAnswer, long createDate) {
@@ -40,7 +45,7 @@ public class User {
     }
 
     public User() {
-
+        this.createDate = Long.parseLong((new SimpleDateFormat("yyyymmdd").format(new Date())).toString());
     }
 
     public long getUserId() {
