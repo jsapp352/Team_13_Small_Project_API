@@ -20,17 +20,15 @@ public class ContactService {
 
     public List<Contact> getContactsByUserId(long userId) { return dao.findByUserId(userId); }
 
-    public List<Contact> getContactsBySearchCriteria(long userId, String searchCritera) {
-        ArrayList<Contact> contacts = new ArrayList<>();
-        String[] args = searchCritera.split("\\P{L}+");
+    public List<Contact> getContactsBySearchCriteria(long userId, String searchCriteria) {
+        String[] args = searchCriteria.split("\\P{L}+");
+        if (args.length == 0) {
+            return new ArrayList<>();
+        }
 
-        for (String arg : args) {
-            System.out.println("Searching for " + arg);
-            List<Contact> innerContacts = dao.findBySearchCriteria(userId, arg);
-            for (Contact c : innerContacts) {
-                System.out.println("Found one");
-            }
-            contacts.addAll(innerContacts);
+        List<Contact> contacts = dao.findBySearchCriteria(userId, args[0]);
+        for (int i = 1; i < args.length; i++) {
+            contacts.retainAll(dao.findBySearchCriteria(userId, args[i]));
         }
 
         return contacts;

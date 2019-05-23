@@ -11,7 +11,7 @@ public interface ContactDao extends CrudRepository<Contact, Long> {
 
     List<Contact> findByUserId(Long userId);
 
-    //@Query(value = "SELECT * FROM contact WHERE user_id = :userId AND (first_name LIKE '%:criteria%' OR last_name LIKE '%:criteria%' OR email LIKE '%:criteria%')", nativeQuery = true)
-    @Query(value = "SELECT * FROM contact WHERE user_id = :userId AND first_name LIKE '%:criteria%'", nativeQuery = true)
+    @Query(value = "SELECT * FROM contact WHERE user_id = :userId " +
+                   "AND (first_name LIKE %:criteria% OR last_name LIKE %:criteria%)", nativeQuery = true)
     List<Contact> findBySearchCriteria(@Param("userId") long userId, @Param("criteria") String searchCriteria);
 }
