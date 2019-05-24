@@ -1,7 +1,11 @@
 package com.cop4331.group13.contactmanager.domain;
 
-import javax.persistence.*;
-import java.text.SimpleDateFormat;
+import org.springframework.data.annotation.CreatedDate;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
 
 @Entity
@@ -16,10 +20,11 @@ public class Contact {
     private String email;
     private String address;
     private long phone;
-    private String image;
-    private long createDate;
 
-    public Contact(long contactId, long userId, String firstName, String lastName, String email, String address, long phone, String image, long createDate) {
+    @CreatedDate
+    private Date createDate;
+
+    public Contact(long contactId, long userId, String firstName, String lastName, String email, String address, long phone, Date createDate) {
         this.contactId = contactId;
         this.userId = userId;
         this.firstName = firstName;
@@ -27,19 +32,17 @@ public class Contact {
         this.email = email;
         this.address = address;
         this.phone = phone;
-        this.image = image;
         this.createDate = createDate;
     }
 
-    public Contact(long userId, String firstName, String lastName, String email, String address, long phone, String image) {
+    public Contact(long userId, String firstName, String lastName, String email, String address, long phone) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.address = address;
         this.phone = phone;
-        this.image = image;
-        this.createDate = Long.parseLong((new SimpleDateFormat("yyyymmdd").format(new Date())).toString());
+        this.createDate = new Date();
     }
 
     public Contact() {
@@ -102,19 +105,11 @@ public class Contact {
         this.phone = phone;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public long getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(long createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 }

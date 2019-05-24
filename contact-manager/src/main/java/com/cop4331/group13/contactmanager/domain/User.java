@@ -3,7 +3,6 @@ package com.cop4331.group13.contactmanager.domain;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -21,9 +20,9 @@ public class User {
     private String securityAnswer;
 
     @CreatedDate
-    private long createDate;
+    private Date createDate;
 
-    public User(long userId, String username, String password, String firstName, String lastName, String securityQuestion, String securityAnswer, long createDate) {
+    public User(long userId, String username, String password, String firstName, String lastName, String securityQuestion, String securityAnswer, Date createDate) {
         this.userId = userId;
         this.username = username;
         this.password = password;
@@ -41,11 +40,11 @@ public class User {
         this.lastName = lastName;
         this.securityQuestion = securityQuestion;
         this.securityAnswer = securityAnswer;
-        this.createDate = Long.parseLong((new SimpleDateFormat("yyyymmdd").format(new Date())).toString());
+        this.createDate = new Date();
     }
 
     public User() {
-        this.createDate = Long.parseLong((new SimpleDateFormat("yyyymmdd").format(new Date())).toString());
+        this.createDate = new Date();
     }
 
     public long getUserId() {
@@ -104,11 +103,11 @@ public class User {
         this.securityAnswer = securityAnswer;
     }
 
-    public long getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(long createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 }

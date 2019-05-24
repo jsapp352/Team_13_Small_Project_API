@@ -13,7 +13,7 @@ public class ContactController {
     @Autowired
     private ContactService service;
 
-    @RequestMapping(value = "/contact/", method = RequestMethod.POST)
+    @RequestMapping(value = "/contact", method = RequestMethod.POST)
     public Contact createContact(@RequestBody Contact contact) { return service.createContact(contact); }
 
     @RequestMapping(value = "/contact/{contactId}", method = RequestMethod.GET)
@@ -25,7 +25,7 @@ public class ContactController {
     @RequestMapping(value = "/contact/userId/{userId}", method = RequestMethod.GET)
     public List<Contact> getContactsByUserId(@PathVariable long userId) { return service.getContactsByUserId(userId); }
 
-    @RequestMapping(value = "/contact/", method = RequestMethod.PUT)
+    @RequestMapping(value = "/contact", method = RequestMethod.PUT)
     public Contact updateContact(@RequestBody Contact contact) { return service.updateContact(contact); }
 
     @RequestMapping(value = "/contact/{contactId}", method = RequestMethod.DELETE)
