@@ -12,7 +12,7 @@ public class UserController {
     @Autowired
     private UserService service;
 
-    @RequestMapping("/user/login")
+    @RequestMapping(value = "/user/login", method = RequestMethod.POST)
     public User loginUser(@RequestHeader(name = "username", required = true) String username,
                           @RequestHeader(name = "password", required = true) String password
     ) {
@@ -24,12 +24,12 @@ public class UserController {
         return service.addUser(user);
     }
 
-    @RequestMapping("/user/{userId}")
+    @RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
     public User getUserByUserId(@PathVariable long userId) {
         return service.getUserByUserId(userId);
     }
 
-    @RequestMapping("/user/username/{username}")
+    @RequestMapping(value = "/user/username/{username}", method = RequestMethod.GET)
     public User getUserByUsername(@PathVariable String username) {
         return service.getUserByUsername(username);
     }
@@ -44,7 +44,7 @@ public class UserController {
         return service.deleteUser(userId);
     }
 
-    @RequestMapping("/user/validateSecurityQuestion")
+    @RequestMapping(value = "/user/validateSecurityQuestion", method = RequestMethod.POST)
     public User validateSecurityQuestion(@RequestHeader(name = "username", required = true) String username,
                                          @RequestHeader(name = "securityanswer", required = true) String securityAnswer
     ) {
