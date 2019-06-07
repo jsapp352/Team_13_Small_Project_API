@@ -5,8 +5,8 @@ buildscript {
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.5.RELEASE")
 	}
-	
-	
+
+
 }
 
 apply plugin: 'java'
@@ -18,13 +18,15 @@ group = 'com.cop4331.group13'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
-task stage {
-	dependsOn build
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
+
+task copyToLib(type: Copy) {
+	into "$buildDir/libs"
+	from(configurations.compile)
 }
 
-jar {
-	baseName = 'contact-manager'
-}
+stage.dependsOn(copyToLib)
 
 repositories {
 	mavenCentral()
